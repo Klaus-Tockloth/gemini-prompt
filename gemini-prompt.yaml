@@ -1,0 +1,195 @@
+﻿# --------------------------------------------------
+# Purpose:
+# - Program configuration for Gemini AI Client
+# 
+# Release:
+# - v0.1 - 2025/02/20: corresponding to program release
+#
+# Remarks:
+# - do not use tabs or unnecessary white spaces in YAML files
+# - !!str = indicates that the associated value is a string
+# --------------------------------------------------
+
+# Gemini configuration section
+# ----------------------------
+
+# Gemini API key (your private key, don't share)
+# 'env:var': obtain api-key from environment variable
+# 'file:pathname': first line of pathname is api-key
+# 'pass:api-key': pass contains the api-key
+GeminiAPIKey: 'env:GEMINI_API_KEY'
+
+# Gemini AI model
+GeminiAiModel: gemini-2.0-flash
+
+# number of generated responses to return (int)
+GeminiCandidateCount: 1
+
+# maximum number of tokens to include in a candidate (int)
+GeminiMaxOutputTokens:
+
+# control the randomness of the output (varies by model, float)
+# Values can range over [0.0, MaxTemperature], inclusive. A higher value
+# will produce responses that are more varied, while a value closer to 0.0
+# will typically result in less surprising responses from the model.
+GeminiTemperature:
+
+# maximum cumulative probability of tokens to consider when sampling (float)
+GeminiTopP:
+
+# maximum number of tokens to consider when sampling (int)
+GeminiTopK:
+
+# SystemInstruction (also known as "system prompt") is a more forceful prompt to the model.
+# The model will adhere the instructions more strongly than if they appeared in a normal prompt.
+# e.g. 'Translate from English to German. Pay attention to correct grammar and a fluent style.'
+GeminiSystemInstruction:
+
+# maximum time in seconds to wait for Gemini file activation (FileStateProcessing -> FileStateActive)
+# videos need to be processed by Gemini before they can be used in prompts
+GeminiMaxWaitTimeFileProcessing: 30
+
+# Markdown rendering section
+# --------------------------
+
+# handling of current prompt/response pair (valid filename is mandatory)
+MarkdownPromptResponseFile: prompt-response.md
+
+# output of current prompt/response pair (%s = placeholder for name of file)
+MarkdownOutput: false
+MarkdownOutputApplicationMacOS: 'open -a "/Applications/Markdown Editor.app" %s'
+MarkdownOutputApplicationLinux:
+MarkdownOutputApplicationWindows:
+MarkdownOutputApplicationOther:
+
+# copy each prompt/response file to history (schema = yyyymmdd-hhmmss.html)
+MarkdownHistory: true
+MarkdownHistoryDirectory: ./history-markdown
+
+# Ansi (terminal) rendering section
+# ---------------------------------
+
+# handling of current prompt/response pair
+AnsiRendering: true
+AnsiPromptResponseFile: prompt-response.ansi
+
+# output of current prompt/response pair
+AnsiOutput: true
+
+# copy each prompt/response file to history (schema = yyyymmdd-hhmmss.html)
+AnsiHistory: true
+AnsiHistoryDirectory: ./history-ansi
+
+# Ansi color codes to replace or remove (modifies Ansi output)
+# reference: https://en.wikipedia.org/wiki/ANSI_escape_code
+AnsiReplaceColors:
+# - "\x1b[44;3m": "\x1b[48;5;186m"
+# - "\x1b[3;44m": "\x1b[48;5;186m"
+
+# HTML rendering section
+# ----------------------
+
+# handling of current prompt/response pair
+HtmlRendering: true
+HtmlPromptResponseFile: prompt-response.html
+
+# output of current prompt/response pair (%s = placeholder for name of file)
+HtmlOutput: true
+HtmlOutputApplicationMacOS: 'open %s'
+HtmlOutputApplicationLinux: 'xdg-open %s'
+HtmlOutputApplicationWindows: 'cmd /c start "" %s'
+HtmlOutputApplicationOther:
+
+# copy each prompt/response file to history (schema = yyyymmdd-hhmmss.html)
+HtmlHistory: true
+HtmlHistoryDirectory: ./history-html
+
+# Html elements to replace or remove (modifies Html output)
+# e.g. show mermaid grafic instead of mermaid text
+HtmlReplaceElements:
+- 'class="language-mermaid"': 'class="mermaid"'
+
+# header to insert at beginning of html page (do not change title, %s is placeholder for prompt)
+HtmlHeader: |
+  <!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8">
+    <title>%s</title>
+    <link rel="icon" type="image/svg+xml" href="assets/gemini-prompt-303030.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="assets/gemini-prompt-ebebeb.svg" media="(prefers-color-scheme: dark)">
+    <!-- replace highlight theme with your favorite one -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" type="text/css" href="assets/gemini-prompt.css">
+  </head>
+  <body>
+
+# footer to add to end of html page (e.g. to add javascript functionality)
+HtmlFooter: |
+  <!-- highlight: syntax highlighter with many themes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <!-- mermaid: render mermaid diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad: true});</script>
+  <!-- add 'copy to clipboard' button to all '<pre><code>' block elements -->
+  <script src="assets/copy-to-clipboard.js"></script>
+  </body>
+  </html>
+
+# Input section
+# -------------
+
+# input from terminal
+InputFromTerminal: true
+
+# input from file (name of file must be specified)
+InputFromFile: true
+InputFile: prompt-input.txt
+
+# input from localhost (should work on all systems)
+InputFromLocalhost: true
+InputLocalhostPort: 4242
+
+# Notification section
+# --------------------
+
+# notify when prompt processing starts
+NotifyPrompt: true
+NotifyPromptApplicationMacOS: !!str osascript -e 'display notification "Prompt received ..." with title "gemini-prompt" sound name "Ping"'
+NotifyPromptApplicationLinux: !!str notify-send "gemini-prompt" "Prompt received ..." -i info -t 1000
+NotifyPromptApplicationWindows: !!str msg * /TIME:2 "gemini-prompt - Prompt received ..."
+NotifyPromptApplicationOther:
+
+# notify when prompt processing has finished
+NotifyResponse: true
+NotifyResponseApplicationMacOS: !!str osascript -e 'display notification "Response received ..." with title "gemini-prompt" sound name "Blow"'
+NotifyResponseApplicationLinux: !!str notify-send "gemini-prompt" "Response received ..." -i info -t 1000
+NotifyResponseApplicationWindows: !!str msg * /TIME:2 "gemini-prompt - Response received ..."
+NotifyResponseApplicationOther:
+
+# History section
+# ---------------
+
+# filename schema (possible option: timestamp, prompt)
+# timestamp : yyyymmdd-hhmmss.extension
+#             e.g. 20250118-134910.html
+# prompt    : prefix.[your actual prompt].postfix.extension
+#             e.g. [What oceans are thereʔ].20250118-140233.html
+#             e.g. 20250118-140233.[What oceans are thereʔ].html
+# file schema 'prompt' often allows you to infer file content from filename
+HistoryFilenameSchema: prompt
+
+# add timestamp (yyyymmdd-hhmmss) to filename (ensures the uniqueness of the filename)
+# this parameters are only useful in conjunction with filename schema 'prompt' 
+HistoryFilenameAddPrefix: false
+HistoryFilenameAddPostfix: true
+
+# add extension to filename (extensions are often associated with applications)
+HistoryFilenameExtensionMarkdown: md
+HistoryFilenameExtensionAnsi: ansi
+HistoryFilenameExtensionHtml: html
+
+# maximum length of filename (mind your operating system's limitations)
+# this parameter is useful in conjunction with filename schema 'prompt' 
+HistoryMaxFilenameLength: 200
