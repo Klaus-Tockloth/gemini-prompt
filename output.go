@@ -188,11 +188,10 @@ func processResponse(resp *genai.GenerateContentResponse, err error) {
 			responseString.WriteString(fmt.Sprintf("Tokens     : %v (in: %v, out: %v)\n",
 				resp.UsageMetadata.TotalTokenCount, resp.UsageMetadata.PromptTokenCount, resp.UsageMetadata.CandidatesTokenCount))
 		}
-	}
-
-	/* needs revision, output never seen */
-	if resp.PromptFeedback != nil {
-		responseString.WriteString(fmt.Sprintf("Blocked    : %v\n", resp.PromptFeedback.BlockReason.String()))
+		/* needs revision, output never seen */
+		if resp.PromptFeedback != nil {
+			responseString.WriteString(fmt.Sprintf("Blocked    : %v\n", resp.PromptFeedback.BlockReason.String()))
+		}
 	}
 
 	responseString.WriteString("```\n")
