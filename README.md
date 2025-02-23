@@ -4,7 +4,7 @@ English version below ...
 
 ### Vorbemerkungen
 
-Künstliche Intelligenz (KI) verändert unsere Strategie der Informationsbeschaffung und -verarbeitung. Gänzlich neu ist die Möglichkeit eigene Dokumente an die KI hochzuladen. Anschließende Abfragen beziehen sich dann auf den Kontext der hochgeladenen Dokumente. Qualifizierte und strukturierte Antworten sind oft über einen längeren Zeitraum wertvoll. Sie erfordern ein Konzept zur Archivierung. Auch die Anreicherung mit weiteren Information und eigenen Bewertungen kann sinnvoll sein. Dies alles erfordert ein anderes Vorgehensmodell als wie bisher bei klassischen Internetrecherchen üblich. Die Nutzung von KI muss sich nahtlos in die eigene Arbeitumgebung und das eigene Arbeitsmodell integrieren. 
+Künstliche Intelligenz (KI) verändert unsere Strategie der Informationsbeschaffung und -verarbeitung. Interessant ist auch die Möglichkeit eigene Dokumente an die KI hochzuladen. Anschließende Abfragen beziehen sich dann auf den Kontext der hochgeladenen Dokumente. Qualifizierte und strukturierte Antworten sind oft über einen längeren Zeitraum wertvoll. Sie erfordern ein Konzept zur Archivierung. Auch die Anreicherung mit weiteren Information und eigenen Bewertungen kann sinnvoll sein. Dies alles erfordert ein anderes Vorgehensmodell als wie bisher bei klassischen Internetrecherchen üblich. Die Nutzung von KI muss sich nahtlos in die eigene Arbeitumgebung und das eigene Arbeitsmodell integrieren. 
 
 ### Intention
 
@@ -127,7 +127,7 @@ Das Programm findet sich in ausführbarer Form (executable, binary) in 'Releases
 
 ### Preliminary Remarks
 
-Artificial intelligence (AI) is changing our strategy for information gathering and processing. The ability to upload one's own documents to AI is entirely new. Subsequent prompts then refer to the context of the uploaded documents. Qualified and structured answers are often valuable over a longer period. They require a concept for archiving. Enrichment with further information and one's own evaluations can also be useful. All of this requires a different procedural model than previously common with classic internet research. The use of AI must seamlessly integrate into one's own working environment and working model.
+Artificial intelligence (AI) is changing our strategy for information gathering and processing. Also interesting is the ability to upload your own documents to the AI. Subsequent prompts then refer to the context of the uploaded documents. Qualified and structured answers are often valuable over a longer period. They require a concept for archiving. Enrichment with further information and one's own evaluations can also be useful. All of this requires a different procedural model than previously common with classic internet research. The use of AI must seamlessly integrate into one's own working environment and working model.
 
 ### Intention
 
