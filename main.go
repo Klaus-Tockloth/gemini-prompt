@@ -8,6 +8,7 @@ Description:
 Releases:
 - v0.1.0 - 2025/02/20: initial release
 - v0.1.1 - 2025/02/23: fixed: nil pointer dereference in processResponse()
+- v0.2.0 - 2025/02/23: 'system instruction' added to prompt output
 
 Copyright:
 - © 2025 | Klaus Tockloth
@@ -53,7 +54,7 @@ import (
 // general program info
 var (
 	progName    = strings.TrimSuffix(filepath.Base(os.Args[0]), filepath.Ext(filepath.Base(os.Args[0])))
-	progVersion = "v0.1.1"
+	progVersion = "v0.2.0"
 	progDate    = "2025/02/23"
 	progPurpose = "gemini prompt"
 	progInfo    = "Prompt Google Gemini AI and display the response."

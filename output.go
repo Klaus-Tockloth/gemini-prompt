@@ -35,6 +35,15 @@ func processPrompt(prompt string) {
 	promptString.WriteString("\n```\n")
 	promptString.WriteString("\n***\n")
 
+	// system instructions part of prompt
+	if progConfig.GeminiSystemInstruction != "" {
+		promptString.WriteString("**System Instructions to Gemini:**\n")
+		promptString.WriteString("\n```plaintext\n")
+		promptString.WriteString(progConfig.GeminiSystemInstruction)
+		promptString.WriteString("\n```\n")
+		promptString.WriteString("\n***\n")
+	}
+
 	// data part of prompt
 	if len(uploadedFiles) > 0 {
 		promptString.WriteString("**Data referenced by the Prompt:**\n")
