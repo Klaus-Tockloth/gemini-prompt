@@ -37,7 +37,7 @@ func processPrompt(prompt string) {
 
 	// system instructions part of prompt
 	if progConfig.GeminiSystemInstruction != "" {
-		promptString.WriteString("**System Instructions to Gemini:**\n")
+		promptString.WriteString("**System Instruction to Gemini:**\n")
 		promptString.WriteString("\n```plaintext\n")
 		promptString.WriteString(progConfig.GeminiSystemInstruction)
 		promptString.WriteString("\n```\n")

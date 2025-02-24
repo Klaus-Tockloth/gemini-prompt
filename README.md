@@ -107,7 +107,14 @@ Um die Anwendung zu nutzen und zu evaluieren, ist ein persönlicher Google-Gemin
 * Beantragung eines persönlichen 'Gemini API-Keys' bei Google.
 * Konfiguration des API-Keys im Programm-Environment:
   * macOS, Linux: 'export GEMINI_API_KEY=Your-API-Key'
-  * Windows: 'set GEMINI_API_KEY Your-API-Key'
+  * Windows: 'setx GEMINI_API_KEY Your-API-Key' (erfordert Neustart des Terminals)
+
+### Internet-Proxy
+
+Um die 'Google Gemini KI' zu nutzen ist eine Verbindung mit dem Internet erforderlich:
+
+* Direkte Verbindung: Client -> Internet
+* Indirekte Verbindung: Client -> Proxy -> Internet
 
 ### Defekte / Diskussionen
 
@@ -229,7 +236,13 @@ To use and evaluate the application, a personal Google Gemini API key is require
 * Request a personal 'Gemini API Key' from Google.
 * Configure the API key in the program environment:
   * macOS, Linux: 'export GEMINI_API_KEY=Your-API-Key'
-  * Windows: 'set GEMINI_API_KEY Your-API-Key'
+  * Windows: 'setx GEMINI_API_KEY Your-API-Key' (requires terminal restart)
+
+### Internet Proxy
+To use the 'Google Gemini AI,' an internet connection is required:
+
+* Direct connection: Client -> Internet
+* Indirect connection: Client -> Proxy -> Internet
 
 ### Defects / Discussions
 

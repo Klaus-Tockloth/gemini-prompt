@@ -44,7 +44,7 @@ func buildHtmlPage(prompt, source, destination string) error {
 	title = strings.ReplaceAll(title, "\n", " ")
 	title = strings.ReplaceAll(title, "\t", " ")
 
-	title = truncate.Truncate(title, 200, "...", truncate.PositionEnd)
+	title = truncate.Truncate(title, progConfig.HtmlMaxLengthTitle, "...", truncate.PositionEnd)
 	htmlHeader := fmt.Sprintf(progConfig.HtmlHeader, title)
 	htmlFooter := progConfig.HtmlFooter
 

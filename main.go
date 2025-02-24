@@ -8,7 +8,7 @@ Description:
 Releases:
 - v0.1.0 - 2025/02/20: initial release
 - v0.1.1 - 2025/02/23: fixed: nil pointer dereference in processResponse()
-- v0.2.0 - 2025/02/23: 'system instruction' added to prompt output
+- v0.2.0 - 2025/02/24: added: 'system instruction' to prompt output, internet proxy support
 
 Copyright:
 - © 2025 | Klaus Tockloth
@@ -24,9 +24,6 @@ Remarks:
 
 Links:
 - https://pkg.go.dev/github.com/google/generative-ai-go/genai
-
-Improvements:
-- Add support for 'Internet Proxy' (technical feature).
 */
 
 package main
@@ -55,7 +52,7 @@ import (
 var (
 	progName    = strings.TrimSuffix(filepath.Base(os.Args[0]), filepath.Ext(filepath.Base(os.Args[0])))
 	progVersion = "v0.2.0"
-	progDate    = "2025/02/23"
+	progDate    = "2025/02/24"
 	progPurpose = "gemini prompt"
 	progInfo    = "Prompt Google Gemini AI and display the response."
 )
@@ -184,8 +181,21 @@ func main() {
 	markdownParser = goldmark.New(goldmark.WithExtensions(extension.GFM))
 
 	// create AI client
+	var client *genai.Client
 	ctx := context.Background()
-	client, err := genai.NewClient(ctx, option.WithAPIKey(progConfig.GeminiAPIKey))
+	if progConfig.GeneralInternetProxy != "" {
+		// indirect internet connection: client -> proxy -> internet
+		httpClient := &http.Client{Transport: &ProxyRoundTripper{
+			APIKey:   progConfig.GeminiAPIKey,
+			ProxyURL: progConfig.GeneralInternetProxy,
+		}}
+		// option.WithAPIKey() shouldn't be necessary because the key is set in ProxyRoundTripper
+		// but without the option, NewClient() attempts to authenticate via Google Cloud SDK (ADC)
+		client, err = genai.NewClient(ctx, option.WithAPIKey(progConfig.GeminiAPIKey), option.WithHTTPClient(httpClient))
+	} else {
+		// direct internet connection: client -> internet
+		client, err = genai.NewClient(ctx, option.WithAPIKey(progConfig.GeminiAPIKey))
+	}
 	if err != nil {
 		fmt.Printf("error [%v] creating AI client\n", err)
 		os.Exit(1)

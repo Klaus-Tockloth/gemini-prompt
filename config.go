@@ -48,6 +48,7 @@ type ProgConfig struct {
 	HtmlOutputApplicationOther   string              `yaml:"HtmlOutputApplicationOther"`
 	HtmlHistory                  bool                `yaml:"HtmlHistory"`
 	HtmlHistoryDirectory         string              `yaml:"HtmlHistoryDirectory"`
+	HtmlMaxLengthTitle           int                 `yaml:"HtmlMaxLengthTitle"`
 	HtmlReplaceElements          []map[string]string `yaml:"HtmlReplaceElements"`
 	HtmlHeader                   string              `yaml:"HtmlHeader"`
 	HtmlFooter                   string              `yaml:"HtmlFooter"`
@@ -78,6 +79,8 @@ type ProgConfig struct {
 	HistoryFilenameExtensionAnsi     string `yaml:"HistoryFilenameExtensionAnsi"`
 	HistoryFilenameExtensionHtml     string `yaml:"HistoryFilenameExtensionHtml"`
 	HistoryMaxFilenameLength         int    `yaml:"HistoryMaxFilenameLength"`
+	//
+	GeneralInternetProxy string `yaml:"GeneralInternetProxy"`
 }
 
 // progConfig contains program configuration
@@ -208,6 +211,14 @@ func loadConfiguration(configFile string) error {
 	progConfig.GeminiAPIKey, err = getPassword(progConfig.GeminiAPIKey)
 	if err != nil {
 		return fmt.Errorf("error [%w] getting api-key", err)
+	}
+
+	// get internet proxy (password)
+	if progConfig.GeneralInternetProxy != "" {
+		progConfig.GeneralInternetProxy, err = getPassword(progConfig.GeneralInternetProxy)
+		if err != nil {
+			return fmt.Errorf("error [%w] getting internet proxy", err)
+		}
 	}
 
 	return nil

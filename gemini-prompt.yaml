@@ -3,7 +3,7 @@
 # - Program configuration for Gemini AI Client
 # 
 # Release:
-# - v0.2 - 2025/02/23: corresponding to program release
+# - v0.2 - 2025/02/24: corresponding to program release
 #
 # Remarks:
 # - do not use tabs or unnecessary white spaces in YAML files
@@ -43,6 +43,7 @@ GeminiTopK:
 # SystemInstruction (also known as "system prompt") is a more forceful prompt to the model.
 # The model will adhere the instructions more strongly than if they appeared in a normal prompt.
 # e.g. 'Translate prompt from English to German. Pay attention to correct grammar and a fluent style.'
+# e.g. 'Use the technical terms common in the subject area. Avoid filler words.'
 GeminiSystemInstruction:
 
 # maximum time in seconds to wait for Gemini file activation (FileStateProcessing -> FileStateActive)
@@ -103,6 +104,9 @@ HtmlOutputApplicationOther:
 # copy each prompt/response file to history (schema = yyyymmdd-hhmmss.html)
 HtmlHistory: true
 HtmlHistoryDirectory: ./history-html
+
+# maximum length of webpage title (equal with first n characters of prompt)
+HtmlMaxLengthTitle: 200
 
 # Html elements to replace or remove (modifies Html output)
 # e.g. show mermaid grafic instead of mermaid text
@@ -193,3 +197,15 @@ HistoryFilenameExtensionHtml: html
 # maximum length of filename (mind your operating system's limitations)
 # this parameter is useful in conjunction with filename schema 'prompt' 
 HistoryMaxFilenameLength: 200
+
+# General settings section
+# ------------------------
+
+# internet proxy url (client -> proxy -> internet)
+# 'env:var': obtain proxy setting from environment variable
+# 'file:pathname': first line of pathname is proxy setting
+# 'pass:api-key': pass contains the proxy setting
+# proxy is often set via enviroment variable 'env:HTTPS_PROXY'
+# e.g. HTTPS_PROXY=http://USERNAME:PASSWORD@proxy-server.mycorp.com:3128
+# do not set anything, if you habe a direct internet connection
+GeneralInternetProxy: 
