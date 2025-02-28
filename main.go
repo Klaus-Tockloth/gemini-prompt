@@ -9,6 +9,9 @@ Releases:
 - v0.1.0 - 2025/02/20: initial release
 - v0.1.1 - 2025/02/23: fixed: nil pointer dereference in processResponse()
 - v0.2.0 - 2025/02/24: added: 'system instruction' to prompt output, internet proxy support
+- v0.2.1 - 2025/02/28: text prompt added as last (not first) part of prompt
+                       max wait time for file processing increaded (30 -> 60)
+					   wait time visualized by dots
 
 Copyright:
 - © 2025 | Klaus Tockloth
@@ -51,8 +54,8 @@ import (
 // general program info
 var (
 	progName    = strings.TrimSuffix(filepath.Base(os.Args[0]), filepath.Ext(filepath.Base(os.Args[0])))
-	progVersion = "v0.2.0"
-	progDate    = "2025/02/24"
+	progVersion = "v0.2.1"
+	progDate    = "2025/02/28"
 	progPurpose = "gemini prompt"
 	progInfo    = "Prompt Google Gemini AI and display the response."
 )
@@ -366,12 +369,12 @@ func main() {
 		fmt.Printf("%02d:%02d:%02d: Processing prompt ...\n", now.Hour(), now.Minute(), now.Second())
 		processPrompt(prompt)
 
-		// build prompt with all parts (text and files)
+		// build prompt with all parts (files and text)
 		promptParts := []genai.Part{}
-		promptParts = append(promptParts, genai.Text(prompt))
 		for _, uploadedFile := range uploadedFiles {
 			promptParts = append(promptParts, genai.FileData{URI: uploadedFile.URI})
 		}
+		promptParts = append(promptParts, genai.Text(prompt))
 
 		// generate content
 		startProcessing = time.Now()

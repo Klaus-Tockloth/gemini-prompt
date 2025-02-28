@@ -63,9 +63,10 @@ func uploadFilesToGemini(ctx context.Context, client *genai.Client, clFiles []st
 			if currentWaitDuration >= maxWaitDuration {
 				break
 			}
+			fmt.Printf(".")
 		}
 		files[i] = tmpFile
-		fmt.Printf("  %s ... %s\n", tmpFile.DisplayName, tmpFile.State.String())
+		fmt.Printf("\r  %s ... %s\n", tmpFile.DisplayName, tmpFile.State.String())
 	}
 
 	return files, nil
