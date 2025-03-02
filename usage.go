@@ -21,6 +21,8 @@ func printUsage() {
 
 	fmt.Printf("\nExamples:\n")
 	fmt.Printf("  %s\n", progName)
+	fmt.Printf("  %s -candidates 2\n", progName)
+	fmt.Printf("  %s -temperature 1.8\n", progName)
 	fmt.Printf("  %s *.go README.md\n", progName)
 	fmt.Printf("  %s -dryrun -uploads ganymed-project-files.txt\n", progName)
 
@@ -78,7 +80,7 @@ func printUsage() {
 /*
 showAvailableGeminiModels requests and shows all currently available and possible Gemini AI models.
 */
-func showAvailableGeminiModels() {
+func showAvailableGeminiModels(terminalWidth int) {
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, option.WithAPIKey(progConfig.GeminiAPIKey))
 	if err != nil {
@@ -86,7 +88,7 @@ func showAvailableGeminiModels() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("\nPossible Gemini AI models (currently determined):\n")
+	fmt.Printf("\nPossible Gemini AI models:\n")
 
 	iter := client.ListModels(ctx)
 	for {
@@ -111,9 +113,11 @@ func showAvailableGeminiModels() {
 			continue
 		}
 
-		fmt.Printf("\n%v (version: %v, in: %v, out: %v)\n", strings.TrimPrefix(modelInfo.Name, "models/"),
-			modelInfo.Version, modelInfo.InputTokenLimit, modelInfo.OutputTokenLimit)
-		fmt.Printf("%v\n", modelInfo.Description)
+		fmt.Printf("\nName             : %v\n", strings.TrimPrefix(modelInfo.Name, "models/"))
+		fmt.Printf("Version          : %v\n", modelInfo.Version)
+		fmt.Printf("InputTokenLimit  : %v\n", modelInfo.InputTokenLimit)
+		fmt.Printf("OutputTokenLimit : %v\n", modelInfo.OutputTokenLimit)
+		fmt.Printf("Description      : %v\n", wrapString(modelInfo.Description, terminalWidth, 19))
 	}
 	client.Close()
 

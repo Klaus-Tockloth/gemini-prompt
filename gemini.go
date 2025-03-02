@@ -58,8 +58,8 @@ func uploadFilesToGemini(ctx context.Context, client *genai.Client, clFiles []st
 			if tmpFile.State != genai.FileStateProcessing {
 				break
 			}
-			time.Sleep(2 * time.Second)
-			currentWaitDuration += 2
+			time.Sleep(3 * time.Second)
+			currentWaitDuration += 3
 			if currentWaitDuration >= maxWaitDuration {
 				break
 			}

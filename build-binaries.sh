@@ -6,6 +6,7 @@
 #
 # Releases:
 # - v1.0.0 - 2025/02/20: initial release
+# - v1.1.0 - 2025/03/01: revive linter added
 # ------------------------------------
 
 set -v -o verbose
@@ -19,6 +20,7 @@ go mod vendor
 
 # lint
 golangci-lint run --no-config --enable gocritic
+revive
 
 # check for known vulnerabilities
 govulncheck ./...

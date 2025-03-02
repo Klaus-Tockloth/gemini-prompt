@@ -72,7 +72,7 @@ Die Anwendung beinhaltet intern alle für die Nutzung erforderlichen Komponenten
 
 ### Benachrichtigungen
 
-Im Gegensatz zur klassischen Internet-Recherche ('googeln') erhält man bei KI-Abfragen in der Regel keine sofortige Antwort. Abhängig von der Komplexität der Anfrage, benötigt die Generierung der qualifizierten Antwort etwas Zeit (z.B. 20-60 Sekunden). Es können
+Im Gegensatz zur klassischen Internet-Recherche ('googeln') erhält man bei KI-Abfragen in der Regel keine sofortige Antwort. Abhängig von der Komplexität der Anfrage und des KI-Modells, benötigt die Generierung der qualifizierten Antwort etwas Zeit (z.B. 20-60 Sekunden). Es können
 Benutzerhinweise konfiguriert werden, die über das Eintreffen einer Abfrage und/oder Antwort informieren.
 
 ### Fazit
@@ -97,8 +97,28 @@ Siehe auch [häufig gestellte Fragen zu Gemini-Apps](https://gemini.google.com/f
 
 ### Hinweise zur frei verfügbaren Version von 'Google Gemini AI'
 
-* Alle eingegebenen Daten können von Google verwendet werden, um 'Gemini AI' zu verbessern.
-* Verarbeiten Sie daher mit der frei verfügbaren Version keine privaten oder vertraulichen Daten.
+* Alle Ein- / Ausgabedaten werden von Google verwendet um das 'Gemini AI Model' zu verbessern.
+* Nach Aussage von Google werden die Daten damit 'öffentlich'.
+* Verarbeiten Sie also keine privaten oder vertraulichen Daten.
+* Fazit: Der Anwender 'bezahlt' für die Nutzung von 'Google Gemini AI' mit seinen Daten.
+
+### Hinweise zur kostenpflichtigen Version von 'Google Gemini AI'
+
+* Google verwendet die eingegebenen Daten **nicht** um das 'Gemini AI Model' zu verbessern.
+* Nach Aussage von Google bleiben die Daten damit 'privat'.
+* Fazit: Der Anwender bezahlt für die Nutzung von 'Google Gemini AI' mit Geld.
+
+### Token-Output-Limit
+
+Jedes Gemini-KI-Modell definiert eine nicht änderbare, maximale Anzahl an Output-Tokens. Dieser Wert begrenzt die Länge der Antwort des KI-Modells.
+Ein Token entspricht dabei grob circa 4 Zeichen, 100 Token in etwa 60 bis 80 englischen Wörtern. Definiert das KI-Modell das Output-Token-Limit
+mit zu Beispiel 8192 Tokens, so entspricht das einer maximalen Antwortlänge von 4900 bis 6500 englischen Wörtern.
+
+### Ratenlimits
+
+Dieses Programm ist kein Multi-User-Service, sondern wird typischerweise von genau einem Anwender genutzt. Bei dieser Nutzungsart sind die Unterschiede in den
+Ratenlimits (Anfragen pro Minute (RPM), Anfragen pro Tag (RPD), Tokens pro Minute (TPM)) zwischen der frei verfügbaren Version und der kostenpflichtigen Version 
+von 'Google Gemini AI' irrelevant.
 
 ### Erforderliche Vorbedingungen
 
@@ -202,7 +222,7 @@ The application internally includes all components required for use. Missing com
 
 ### Notifications
 
-In contrast to classic internet research ('googling'), you usually do not receive an immediate response to AI prompts. Depending on the complexity of the request, generating a qualified response takes some time (e.g., 20-60 seconds). User hints can be configured to inform you about the arrival of a prompt and/or response.
+In contrast to classic internet research ('googling'), you usually do not receive an immediate response to AI prompts. Depending on the complexity of the request and the AI model, generating a qualified response takes some time (e.g. 20-60 seconds). User hints can be configured to inform you about the arrival of a prompt and/or response.
 
 ### Conclusion
 
@@ -226,8 +246,24 @@ See also [Gemini Apps FAQ](https://gemini.google.com/faq?hl=en).
 
 ### Notes concerning the freely available version of 'Google Gemini AI'
 
-* All input data may be used by Google to improve 'Gemini AI'.
+* All input and output data is used by Google to improve the 'Gemini AI Model'.
+* According to Google, this means the data becomes 'public'.
 * Therefore, do not process any private or confidential data.
+* Conclusion: The user 'pays' for the use of 'Google Gemini AI' with their data.
+
+### Notes on the Paid Version of 'Google Gemini AI'
+
+* Google does not use the entered data to improve the 'Gemini AI Model'.
+* According to Google, this means the data remains 'private'.
+* Conclusion: The user pays for the use of 'Google Gemini AI' with money.
+
+### Token Output Limit
+
+Each Gemini AI model defines a non-modifiable, maximum number of output tokens. This value limits the length of the AI model's response. One token roughly corresponds to approximately 4 characters, 100 tokens to about 60 to 80 English words. If, for example, the AI model defines the output token limit as 8192 tokens, this corresponds to a maximum response length of 4900 to 6500 English words.
+
+### Rate Limits
+
+This program is not a multi-user service, but is typically used by exactly one user. For this type of usage, the differences in the rate limits (Requests Per Minute (RPM), Requests Per Day (RPD), Tokens Per Minute (TPM)) between the freely available version and the paid version of 'Google Gemini AI' are irrelevant.
 
 ### Required Prerequisites
 

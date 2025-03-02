@@ -81,12 +81,12 @@ func processPrompt(prompt string) {
 
 	// render prompt as html
 	htmlData := promptString.String()
-	if progConfig.HtmlRendering {
-		htmlData = renderMarkdown2Html(promptString.String())
+	if progConfig.HTMLRendering {
+		htmlData = renderMarkdown2HTML(promptString.String())
 	}
 
 	// write prompt to current html request/response file
-	err = os.WriteFile(progConfig.HtmlPromptResponseFile, []byte(htmlData), 0666)
+	err = os.WriteFile(progConfig.HTMLPromptResponseFile, []byte(htmlData), 0666)
 	if err != nil {
 		fmt.Printf("error [%v] at os.WriteFile()\n", err)
 		return
@@ -232,16 +232,16 @@ func processResponse(resp *genai.GenerateContentResponse, err error) {
 
 	// render markdown response as html
 	htmlData := responseString.String()
-	if progConfig.HtmlRendering {
-		htmlData = renderMarkdown2Html(responseString.String())
+	if progConfig.HTMLRendering {
+		htmlData = renderMarkdown2HTML(responseString.String())
 	}
 
 	// append response string to current html request/response file
-	currentFileHtml, err := os.OpenFile(progConfig.HtmlPromptResponseFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	currentFileHTML, err := os.OpenFile(progConfig.HTMLPromptResponseFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Printf("error [%v] at os.OpenFile()\n", err)
 		return
 	}
-	defer currentFileHtml.Close()
-	fmt.Fprint(currentFileHtml, htmlData)
+	defer currentFileHTML.Close()
+	fmt.Fprint(currentFileHTML, htmlData)
 }

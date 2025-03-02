@@ -38,20 +38,20 @@ type ProgConfig struct {
 	AnsiHistoryDirectory   string              `yaml:"AnsiHistoryDirectory"`
 	AnsiReplaceColors      []map[string]string `yaml:"AnsiReplaceColors"`
 	//
-	HtmlRendering                bool   `yaml:"HtmlRendering"`
-	HtmlPromptResponseFile       string `yaml:"HtmlPromptResponseFile"`
-	HtmlOutput                   bool   `yaml:"HtmlOutput"`
-	HtmlOutputApplication        string
-	HtmlOutputApplicationMacOS   string              `yaml:"HtmlOutputApplicationMacOS"`
-	HtmlOutputApplicationLinux   string              `yaml:"HtmlOutputApplicationLinux"`
-	HtmlOutputApplicationWindows string              `yaml:"HtmlOutputApplicationWindows"`
-	HtmlOutputApplicationOther   string              `yaml:"HtmlOutputApplicationOther"`
-	HtmlHistory                  bool                `yaml:"HtmlHistory"`
-	HtmlHistoryDirectory         string              `yaml:"HtmlHistoryDirectory"`
-	HtmlMaxLengthTitle           int                 `yaml:"HtmlMaxLengthTitle"`
-	HtmlReplaceElements          []map[string]string `yaml:"HtmlReplaceElements"`
-	HtmlHeader                   string              `yaml:"HtmlHeader"`
-	HtmlFooter                   string              `yaml:"HtmlFooter"`
+	HTMLRendering                bool   `yaml:"HTMLRendering"`
+	HTMLPromptResponseFile       string `yaml:"HTMLPromptResponseFile"`
+	HTMLOutput                   bool   `yaml:"HTMLOutput"`
+	HTMLOutputApplication        string
+	HTMLOutputApplicationMacOS   string              `yaml:"HTMLOutputApplicationMacOS"`
+	HTMLOutputApplicationLinux   string              `yaml:"HTMLOutputApplicationLinux"`
+	HTMLOutputApplicationWindows string              `yaml:"HTMLOutputApplicationWindows"`
+	HTMLOutputApplicationOther   string              `yaml:"HTMLOutputApplicationOther"`
+	HTMLHistory                  bool                `yaml:"HTMLHistory"`
+	HTMLHistoryDirectory         string              `yaml:"HTMLHistoryDirectory"`
+	HTMLMaxLengthTitle           int                 `yaml:"HTMLMaxLengthTitle"`
+	HTMLReplaceElements          []map[string]string `yaml:"HTMLReplaceElements"`
+	HTMLHeader                   string              `yaml:"HTMLHeader"`
+	HTMLFooter                   string              `yaml:"HTMLFooter"`
 	//
 	InputFromTerminal  bool   `yaml:"InputFromTerminal"`
 	InputFromFile      bool   `yaml:"InputFromFile"`
@@ -77,14 +77,14 @@ type ProgConfig struct {
 	HistoryFilenameAddPostfix        bool   `yaml:"HistoryFilenameAddPostfix"`
 	HistoryFilenameExtensionMarkdown string `yaml:"HistoryFilenameExtensionMarkdown"`
 	HistoryFilenameExtensionAnsi     string `yaml:"HistoryFilenameExtensionAnsi"`
-	HistoryFilenameExtensionHtml     string `yaml:"HistoryFilenameExtensionHtml"`
+	HistoryFilenameExtensionHTML     string `yaml:"HistoryFilenameExtensionHTML"`
 	HistoryMaxFilenameLength         int    `yaml:"HistoryMaxFilenameLength"`
 	//
 	GeneralInternetProxy string `yaml:"GeneralInternetProxy"`
 }
 
 // progConfig contains program configuration
-var progConfig = ProgConfig{GeminiCandidateCount: -1, GeminiMaxOutputTokens: -1, GeminiTemperature: -1.0, GeminiTopP: -1.0, GeminiTopK: -1}
+var progConfig = ProgConfig{GeminiCandidateCount: -1, GeminiTemperature: -1.0, GeminiTopP: -1.0, GeminiTopK: -1, GeminiMaxOutputTokens: -1}
 
 /*
 loadConfiguration loads program configuration from yaml file.
@@ -142,24 +142,24 @@ func loadConfiguration(configFile string) error {
 	}
 
 	// html
-	if progConfig.HtmlRendering && progConfig.HtmlPromptResponseFile == "" {
-		return fmt.Errorf("empty HtmlPromptResponseFile not allowed")
+	if progConfig.HTMLRendering && progConfig.HTMLPromptResponseFile == "" {
+		return fmt.Errorf("empty HTMLPromptResponseFile not allowed")
 	}
 	switch operatingSystem {
 	case "darwin":
-		progConfig.HtmlOutputApplication = progConfig.HtmlOutputApplicationMacOS
+		progConfig.HTMLOutputApplication = progConfig.HTMLOutputApplicationMacOS
 	case "linux":
-		progConfig.HtmlOutputApplication = progConfig.HtmlOutputApplicationLinux
+		progConfig.HTMLOutputApplication = progConfig.HTMLOutputApplicationLinux
 	case "windows":
-		progConfig.HtmlOutputApplication = progConfig.HtmlOutputApplicationWindows
+		progConfig.HTMLOutputApplication = progConfig.HTMLOutputApplicationWindows
 	default:
-		progConfig.HtmlOutputApplication = progConfig.HtmlOutputApplicationOther
+		progConfig.HTMLOutputApplication = progConfig.HTMLOutputApplicationOther
 	}
-	if progConfig.HtmlOutput && progConfig.HtmlOutputApplication == "" {
-		return fmt.Errorf("empty operating system specific HtmlOutputApplication not allowed")
+	if progConfig.HTMLOutput && progConfig.HTMLOutputApplication == "" {
+		return fmt.Errorf("empty operating system specific HTMLOutputApplication not allowed")
 	}
-	if progConfig.HtmlHistory && progConfig.HtmlHistoryDirectory == "" {
-		return fmt.Errorf("empty HtmlHistoryDirectory not allowed")
+	if progConfig.HTMLHistory && progConfig.HTMLHistoryDirectory == "" {
+		return fmt.Errorf("empty HTMLHistoryDirectory not allowed")
 	}
 
 	// input
@@ -250,8 +250,8 @@ func showConfiguration() {
 	if progConfig.AnsiRendering {
 		fmt.Printf("  Ansi     : %v\n", progConfig.AnsiPromptResponseFile)
 	}
-	if progConfig.HtmlRendering {
-		fmt.Printf("  Html     : %v\n", progConfig.HtmlPromptResponseFile)
+	if progConfig.HTMLRendering {
+		fmt.Printf("  HTML     : %v\n", progConfig.HTMLPromptResponseFile)
 	}
 
 	fmt.Printf("\nHistory:\n")
@@ -261,8 +261,8 @@ func showConfiguration() {
 	if progConfig.AnsiHistory {
 		fmt.Printf("  Ansi     : %v\n", progConfig.AnsiHistoryDirectory)
 	}
-	if progConfig.HtmlHistory {
-		fmt.Printf("  Html     : %v\n", progConfig.HtmlHistoryDirectory)
+	if progConfig.HTMLHistory {
+		fmt.Printf("  HTML     : %v\n", progConfig.HTMLHistoryDirectory)
 	}
 
 	fmt.Printf("\nOutput:\n")
@@ -272,11 +272,14 @@ func showConfiguration() {
 	if progConfig.MarkdownOutput {
 		fmt.Printf("  Markdown : execute application\n")
 	}
-	if progConfig.HtmlOutput {
-		fmt.Printf("  Html     : execute application\n")
+	if progConfig.HTMLOutput {
+		fmt.Printf("  HTML     : execute application\n")
 	}
 }
 
+/*
+initializeProgram initializes this program.
+*/
 func initializeProgram() {
 	var err error
 
@@ -295,17 +298,17 @@ func initializeProgram() {
 			os.Exit(1)
 		}
 	}
-	if progConfig.HtmlHistory {
-		err = os.Mkdir(progConfig.HtmlHistoryDirectory, 0750)
+	if progConfig.HTMLHistory {
+		err = os.Mkdir(progConfig.HTMLHistoryDirectory, 0750)
 		if err != nil && !os.IsExist(err) {
 			fmt.Printf("error [%v] at os.Mkdir()\n", err)
 			os.Exit(1)
 		}
-		err = os.Mkdir(progConfig.HtmlHistoryDirectory+"/assets", 0750)
+		err = os.Mkdir(progConfig.HTMLHistoryDirectory+"/assets", 0750)
 		if err != nil && !os.IsExist(err) {
 			fmt.Printf("error [%v] at os.Mkdir()\n", err)
 			os.Exit(1)
 		}
-		writeAssets(progConfig.HtmlHistoryDirectory)
+		writeAssets(progConfig.HTMLHistoryDirectory)
 	}
 }

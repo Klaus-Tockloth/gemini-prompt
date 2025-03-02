@@ -82,14 +82,13 @@ func readPromptFromLocalhost(promptChannel chan string) http.HandlerFunc {
 			http.Error(w, "error reading request body", http.StatusBadRequest)
 			fmt.Printf("error [%v] reading request body\n", err)
 			return
-		} else {
-			if len(body) == 0 {
-				http.Error(w, "prompt empty", http.StatusBadRequest)
-				return
-			} else {
-				promptChannel <- string(body)
-			}
 		}
+
+		if len(body) == 0 {
+			http.Error(w, "prompt empty", http.StatusBadRequest)
+			return
+		}
+		promptChannel <- string(body)
 		defer r.Body.Close()
 
 		fmt.Fprintln(w, "prompt received")

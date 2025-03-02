@@ -34,7 +34,7 @@ require (
 	github.com/gomarkdown/markdown v0.0.0-20250207164621-7a1f277a159e // indirect
 	github.com/google/s2a-go v0.1.9 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
+	github.com/googleapis/enterprise-certificate-proxy v0.3.5 // indirect
 	github.com/googleapis/gax-go/v2 v2.14.1 // indirect
 	github.com/kyokomi/emoji/v2 v2.2.13 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect

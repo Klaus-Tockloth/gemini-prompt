@@ -18,18 +18,18 @@ func writeConfig() {
 }
 
 //go:embed prompt-input.html
-var geminiPromptInputHtml []byte
+var geminiPromptInputHTML []byte
 
 func writePromptInput() {
 	filename := "prompt-input.html"
-	err := os.WriteFile(filename, geminiPromptInputHtml, 0666)
+	err := os.WriteFile(filename, geminiPromptInputHTML, 0666)
 	if err != nil {
 		log.Fatalf("embed: error [%v] at os.WriteFile(), file = [%s]", err, filename)
 	}
 }
 
 //go:embed assets/gemini-prompt.css
-var assetsGeminiPromptCss []byte
+var assetsGeminiPromptCSS []byte
 
 //go:embed assets/gemini-prompt-303030.svg
 var assetsGeminiPrompt303030Svg []byte
@@ -42,7 +42,7 @@ var assetsCopyToClipboardJs []byte
 
 func writeAssets(basepath string) {
 	filename := basepath + "/assets/gemini-prompt.css"
-	err := os.WriteFile(filename, assetsGeminiPromptCss, 0666)
+	err := os.WriteFile(filename, assetsGeminiPromptCSS, 0666)
 	if err != nil {
 		log.Fatalf("embed: error [%v] at os.WriteFile(), file = [%s]", err, filename)
 	}
