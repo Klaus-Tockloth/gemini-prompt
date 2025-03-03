@@ -101,18 +101,6 @@ func showAvailableGeminiModels(terminalWidth int) {
 			break
 		}
 
-		// only show models that support 'generateContent'
-		hasGenerateContent := false
-		for _, method := range modelInfo.SupportedGenerationMethods {
-			if method == "generateContent" {
-				hasGenerateContent = true
-				break
-			}
-		}
-		if !hasGenerateContent {
-			continue
-		}
-
 		fmt.Printf("\nName             : %v\n", strings.TrimPrefix(modelInfo.Name, "models/"))
 		fmt.Printf("Version          : %v\n", modelInfo.Version)
 		fmt.Printf("Methods          : %v\n", strings.Join(modelInfo.SupportedGenerationMethods, ", "))

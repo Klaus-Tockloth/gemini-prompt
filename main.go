@@ -11,6 +11,7 @@ Releases:
   - v0.2.0 - 2025/02/24: added: 'system instruction' to prompt output, internet proxy support
   - v0.3.0 - 2025/03/02: options '-topk' and 'topp' added, general improvements, refactoring
   - v0.3.1 - 2025/03/03: fixed: nil pointer dereference in printAIModelInfo()
+    method filter removed in showAvailableGeminiModels()
 
 Copyright:
 - © 2025 | Klaus Tockloth
