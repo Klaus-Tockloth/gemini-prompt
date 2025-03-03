@@ -10,6 +10,7 @@ Releases:
   - v0.1.1 - 2025/02/23: fixed: nil pointer dereference in processResponse()
   - v0.2.0 - 2025/02/24: added: 'system instruction' to prompt output, internet proxy support
   - v0.3.0 - 2025/03/02: options '-topk' and 'topp' added, general improvements, refactoring
+  - v0.3.1 - 2025/03/03: fixed: nil pointer dereference in printAIModelInfo()
 
 Copyright:
 - © 2025 | Klaus Tockloth
@@ -52,8 +53,8 @@ import (
 // general program info
 var (
 	progName    = strings.TrimSuffix(filepath.Base(os.Args[0]), filepath.Ext(filepath.Base(os.Args[0])))
-	progVersion = "v0.3.0"
-	progDate    = "2025/03/02"
+	progVersion = "v0.3.1"
+	progDate    = "2025/03/03"
 	progPurpose = "gemini prompt"
 	progInfo    = "Prompt Google Gemini AI and display the response."
 )
@@ -393,7 +394,9 @@ func printAIModelInfo(geminiModel *genai.GenerativeModel, modelInfo *genai.Model
 	fmt.Printf("  OutputTokenLimit  : %v (approx. %.0f-%.0f english words)\n", modelInfo.OutputTokenLimit, outputTokenLimitWordsLower, outputTokenLimitWordsUpper)
 	fmt.Printf("  Supported Methods : %v\n", strings.Join(modelInfo.SupportedGenerationMethods, ", "))
 	fmt.Printf("  Temperature       : %v\n", modelInfo.Temperature)
-	fmt.Printf("  MaxTemperature    : %v\n", *modelInfo.MaxTemperature)
+	if modelInfo.MaxTemperature != nil {
+		fmt.Printf("  MaxTemperature    : %v\n", *modelInfo.MaxTemperature)
+	}
 	fmt.Printf("  TopP              : %v\n", modelInfo.TopP)
 	fmt.Printf("  TopK              : %v\n", modelInfo.TopK)
 

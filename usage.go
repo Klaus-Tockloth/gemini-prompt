@@ -115,6 +115,7 @@ func showAvailableGeminiModels(terminalWidth int) {
 
 		fmt.Printf("\nName             : %v\n", strings.TrimPrefix(modelInfo.Name, "models/"))
 		fmt.Printf("Version          : %v\n", modelInfo.Version)
+		fmt.Printf("Methods          : %v\n", strings.Join(modelInfo.SupportedGenerationMethods, ", "))
 		fmt.Printf("InputTokenLimit  : %v\n", modelInfo.InputTokenLimit)
 		fmt.Printf("OutputTokenLimit : %v\n", modelInfo.OutputTokenLimit)
 		fmt.Printf("Description      : %v\n", wrapString(modelInfo.Description, terminalWidth, 19))
