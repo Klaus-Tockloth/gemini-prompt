@@ -6,7 +6,14 @@ English version below ...
 
 Künstliche Intelligenz (KI) verändert unsere Strategie der Informationsbeschaffung und -verarbeitung. Interessant ist auch die Möglichkeit eigene Dokumente an die KI hochzuladen. Anschließende Abfragen beziehen sich dann auf den Kontext der hochgeladenen Dokumente. Qualifizierte und strukturierte Antworten sind oft über einen längeren Zeitraum wertvoll. Sie erfordern ein Konzept zur Archivierung. Auch die Anreicherung mit weiteren Information und eigenen Bewertungen kann sinnvoll sein. Dies alles erfordert ein anderes Vorgehensmodell als wie bisher bei klassischen Internetrecherchen üblich. Die Nutzung von KI muss sich nahtlos in die eigene Arbeitumgebung und das eigene Arbeitsmodell integrieren. 
 
-### Intention
+### Intention / Zweck
+
+Dieses Programm ermöglicht die Interaktion mit einem Modell der Google Gemini KI. Es bietet dem Benutzern eine einfache Möglichkeit, Prompts an die Gemini-KI zu senden und die Antworten in verschiedenen Formaten (Markdown, ANSI, HTML) zu erhalten. Das Programm ist konfigurierbar und unterstützt verschiedene Eingabe- und Ausgabekanäle sowie eine Historienfunktion:
+
+* Prompts an Google Gemini KI senden und Antworten erhalten.
+* Integration von KI-Funktionen in den Workflow des Benutzers.
+* Unterstützung verschiedener Eingabe- und Ausgabeformate.
+* Lokale Speicherung von Prompt- und Antwort-Historien.
 
 Die Anwendung ermöglicht die nahtlose Integration von 'Google Gemini KI' in die eigene Arbeitsumgebung:
 
@@ -156,7 +163,14 @@ Das Programm findet sich in ausführbarer Form (executable, binary) in 'Releases
 
 Artificial intelligence (AI) is changing our strategy for information gathering and processing. Also interesting is the ability to upload your own documents to the AI. Subsequent prompts then refer to the context of the uploaded documents. Qualified and structured answers are often valuable over a longer period. They require a concept for archiving. Enrichment with further information and one's own evaluations can also be useful. All of this requires a different procedural model than previously common with classic internet research. The use of AI must seamlessly integrate into one's own working environment and working model.
 
-### Intention
+### Intention / Purpose
+
+This program enables interaction with a Google Gemini AI model. It offers users a simple way to send prompts to the Gemini AI and receive the responses in various formats (Markdown, ANSI, HTML). The program is configurable and supports various input and output channels as well as a history feature:
+
+* Send prompts to Google Gemini AI and receive responses.
+* Integration of AI capabilities into the user's workflow.
+* Support for various input and output formats.
+* Local storage of prompt and response history.
 
 The application enables seamless integration of 'Google Gemini AI' into your own working environment:
 
