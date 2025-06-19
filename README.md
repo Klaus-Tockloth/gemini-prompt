@@ -1,4 +1,8 @@
-English version below ...
+### Diese Software ist veraltet und wird archiviert.
+### This software is outdated and will be archived.
+### Benutze stattdessen / Use instead:
+
+https://github.com/Klaus-Tockloth/gem-pro
 
 ## gemini-prompt
 
